@@ -6,6 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="main_title">MengPo</string>
     <string name="user_login">User Login</string>
+    <string name="user_login_sso">User Login SSO</string>
     <string name="load">Load</string>
     <string name="write">Write</string>
 

@@ -33,6 +33,8 @@
         </activity>
         <activity android:name="com.mengdd.weibo.sina.write.SendStatusActivity" >
         </activity>
+        <activity android:name="com.mengdd.hellosina.SsoAuthorActivity" >
+        </activity>
     </application>
 
 </manifest>

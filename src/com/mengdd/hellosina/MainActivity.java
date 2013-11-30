@@ -4,6 +4,7 @@ import com.mengdd.hellosina.components.FrameHeaderViewModel;
 import com.mengdd.hellosina.components.FrameHeaderViewModel.OnSettingListener;
 import com.mengdd.weibo.sina.read.LoadStatusesActivity;
 import com.mengdd.weibo.sina.write.SendStatusActivity;
+import com.weibo.sina.android.api.AuthorizeSSOHelper;
 import com.weibo.sina.android.utils.AppConfig;
 import com.weibo.sina.android.utils.AppConstants;
 
@@ -80,6 +81,7 @@ public class MainActivity extends Activity {
 		// Instantiate the list of samples.
 		mSamples = new Sample[] {
 				new Sample(R.string.user_login, UserAuthorizeActivity.class),
+				new Sample(R.string.user_login_sso, SsoAuthorActivity.class),
 
 				new Sample(R.string.load, LoadStatusesActivity.class),
 				new Sample(R.string.write, SendStatusActivity.class),
