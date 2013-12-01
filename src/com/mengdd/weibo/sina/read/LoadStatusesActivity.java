@@ -25,72 +25,72 @@ import android.widget.Button;
 import android.widget.ListView;
 
 public class LoadStatusesActivity extends Activity {
-	private static final String TAG = "Load";
-	private Button mRefreshBtn = null;
-	private ListView mListView = null;
-	private HomeStatusAdapter mAdapter = null;
-	private List<StatusItem> mStatusItems = new ArrayList<StatusItem>();
+    private static final String TAG = "Load";
+    private Button mRefreshBtn = null;
+    private ListView mListView = null;
+    private HomeStatusAdapter mAdapter = null;
+    private List<StatusItem> mStatusItems = new ArrayList<StatusItem>();
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_load);
-		mListView = (ListView) findViewById(R.id.mainList);
-		mAdapter = new HomeStatusAdapter(LoadStatusesActivity.this,
-				mStatusItems);
-		mListView.setAdapter(mAdapter);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.activity_load);
+        mListView = (ListView) findViewById(R.id.mainList);
+        mAdapter = new HomeStatusAdapter(LoadStatusesActivity.this,
+                mStatusItems);
+        mListView.setAdapter(mAdapter);
 
-		mRefreshBtn = (Button) findViewById(R.id.btn_refresh);
-		mRefreshBtn.setOnClickListener(new OnClickListener() {
+        mRefreshBtn = (Button) findViewById(R.id.btn_refresh);
+        mRefreshBtn.setOnClickListener(new OnClickListener() {
 
-			@Override
-			public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-				refreshStatuses();
-			}
-		});
-	}
+                refreshStatuses();
+            }
+        });
+    }
 
-	private void refreshStatuses() {
+    private void refreshStatuses() {
 
-		StatusesAPI
-				.friendsTimeline(30, 1, false, FEATURE.ALL, mRefreshListener);
-	}
+        StatusesAPI
+                .friendsTimeline(30, 1, false, FEATURE.ALL, mRefreshListener);
+    }
 
-	private RequestListenerAdapter mRefreshListener = new RequestListenerAdapter() {
+    private RequestListenerAdapter mRefreshListener = new RequestListenerAdapter() {
 
-		public void onComplete(String result) {
-			Log.i(TAG, "onComplete: " + result);
+        public void onComplete(String result) {
+            Log.i(TAG, "onComplete: " + result);
 
-			mStatusItems.clear();
-			try {
-				JSONObject jsonObject = new JSONObject(result);
+            mStatusItems.clear();
+            try {
+                JSONObject jsonObject = new JSONObject(result);
 
-				JSONArray jsonArray = jsonObject.optJSONArray("statuses");
+                JSONArray jsonArray = jsonObject.optJSONArray("statuses");
 
-				for (int i = 0; i < jsonArray.length(); ++i) {
-					Log.i(TAG, "--" + i + "--" + jsonArray.get(i));
-					StatusItem item = new StatusItem(
-							(JSONObject) jsonArray.get(i));
-					mStatusItems.add(item);
-				}
+                for (int i = 0; i < jsonArray.length(); ++i) {
+                    Log.i(TAG, "--" + i + "--" + jsonArray.get(i));
+                    StatusItem item = new StatusItem(
+                            (JSONObject) jsonArray.get(i));
+                    mStatusItems.add(item);
+                }
 
-				LoadStatusesActivity.this.runOnUiThread(new Runnable() {
+                LoadStatusesActivity.this.runOnUiThread(new Runnable() {
 
-					@Override
-					public void run() {
-						mAdapter.notifyDataSetChanged();
+                    @Override
+                    public void run() {
+                        mAdapter.notifyDataSetChanged();
 
-					}
-				});
+                    }
+                });
 
-			}
-			catch (JSONException e) {
-				e.printStackTrace();
-			}
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
 
-		};
-	};
+        };
+    };
 
 }

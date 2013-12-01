@@ -6,63 +6,63 @@ import android.util.Log;
 
 public class StatusItem {
 
-	private static final String TAG = "StatusItem";
-	
-	private UserInfo mUserInfo = null;
-	private GeoInfo mGeoInfo = null;
-	private StatusItem mRetweetedStatus = null;
+    private static final String TAG = "StatusItem";
 
-	private String created_at = null;
-	private long id = 0;
-	private String text = null;
-	private String source = null;
+    private UserInfo mUserInfo = null;
+    private GeoInfo mGeoInfo = null;
+    private StatusItem mRetweetedStatus = null;
 
-	private int reposts_count = 0;
-	private int comments_count = 0;
-	private int attitudes_count = 0;
+    private String created_at = null;
+    private long id = 0;
+    private String text = null;
+    private String source = null;
 
-	private String thumbnail_pic = null;
-	private String bmiddle_pic = null;
-	private String original_pic = null;
+    private int reposts_count = 0;
+    private int comments_count = 0;
+    private int attitudes_count = 0;
 
-	public StatusItem(JSONObject jsonObject) {
+    private String thumbnail_pic = null;
+    private String bmiddle_pic = null;
+    private String original_pic = null;
 
-		initFromJSONObject(jsonObject);
+    public StatusItem(JSONObject jsonObject) {
 
-	}
+        initFromJSONObject(jsonObject);
 
-	private void initFromJSONObject(JSONObject jsonObject) {
-		if (null == jsonObject) {
+    }
 
-			Log.e(TAG, "object is null in init!");
-			return;
-		}
-		created_at = jsonObject.optString("created_at");
-		id = jsonObject.optLong("id");
-		text = jsonObject.optString("text");
-		source = jsonObject.optString("source");
+    private void initFromJSONObject(JSONObject jsonObject) {
+        if (null == jsonObject) {
 
-		reposts_count = jsonObject.optInt("reposts_count");
-		comments_count = jsonObject.optInt("comments_count");
-		attitudes_count = jsonObject.optInt("attitudes_count");
+            Log.e(TAG, "object is null in init!");
+            return;
+        }
+        created_at = jsonObject.optString("created_at");
+        id = jsonObject.optLong("id");
+        text = jsonObject.optString("text");
+        source = jsonObject.optString("source");
 
-		thumbnail_pic = jsonObject.optString("thumbnail_pic");
-		bmiddle_pic = jsonObject.optString("bmiddle_pic");
-		original_pic = jsonObject.optString("original_pic");
+        reposts_count = jsonObject.optInt("reposts_count");
+        comments_count = jsonObject.optInt("comments_count");
+        attitudes_count = jsonObject.optInt("attitudes_count");
 
-		mUserInfo = new UserInfo(jsonObject.optJSONObject("user"));
-		mGeoInfo = new GeoInfo(jsonObject.optJSONObject("geo"));
-		mRetweetedStatus = new StatusItem(
-				jsonObject.optJSONObject("retweeted_status"));
+        thumbnail_pic = jsonObject.optString("thumbnail_pic");
+        bmiddle_pic = jsonObject.optString("bmiddle_pic");
+        original_pic = jsonObject.optString("original_pic");
 
-	}
+        mUserInfo = new UserInfo(jsonObject.optJSONObject("user"));
+        mGeoInfo = new GeoInfo(jsonObject.optJSONObject("geo"));
+        mRetweetedStatus = new StatusItem(
+                jsonObject.optJSONObject("retweeted_status"));
 
-	public UserInfo getUserInfo() {
-		return mUserInfo;
-	}
+    }
 
-	public String getText() {
-		return text;
-	}
+    public UserInfo getUserInfo() {
+        return mUserInfo;
+    }
+
+    public String getText() {
+        return text;
+    }
 
 }

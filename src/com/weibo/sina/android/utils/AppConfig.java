@@ -11,6 +11,8 @@ public class AppConfig {
     // AccessToken
     public static Oauth2AccessToken accessToken = null;
 
+    public static boolean isInited = false;
+
     // uid
     public static long currentUid = 0;
     public static final String KEY_UID_PREF = "uid";
@@ -26,6 +28,7 @@ public class AppConfig {
         }
 
         currentUserInfo = new UserInfo(context);
+        isInited = true;
 
     }
 

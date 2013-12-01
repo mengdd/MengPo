@@ -8,33 +8,33 @@ import android.os.Bundle;
 
 public class SsoAuthorActivity extends Activity {
 
-	private AuthorizeSSOHelper mAuthSSOHelper = null;
+    private AuthorizeSSOHelper mAuthSSOHelper = null;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.author_sso_activity);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.author_sso_activity);
 
-		mAuthSSOHelper = new AuthorizeSSOHelper(this);
+        mAuthSSOHelper = new AuthorizeSSOHelper(this);
 
-		doAuthorize();
-	}
+        doAuthorize();
+    }
 
-	private void doAuthorize() {
-		mAuthSSOHelper.getToken();
+    private void doAuthorize() {
+        mAuthSSOHelper.getToken();
 
-	}
+    }
 
-	/**
-	 * 当 SSO 授权 Activity 退出时，该函数被调用。
-	 * 
-	 * @see {@link Activity#onActivityResult}
-	 */
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
+    /**
+     * 当 SSO 授权 Activity 退出时，该函数被调用。
+     * 
+     * @see {@link Activity#onActivityResult}
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-		mAuthSSOHelper.onActivityResult(requestCode, resultCode, data);
-	}
+        mAuthSSOHelper.onActivityResult(requestCode, resultCode, data);
+    }
 
 }
