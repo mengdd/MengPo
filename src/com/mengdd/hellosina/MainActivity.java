@@ -1,13 +1,8 @@
 package com.mengdd.hellosina;
 
-import com.mengdd.hellosina.components.FrameHeaderViewModel;
-import com.mengdd.hellosina.components.FrameHeaderViewModel.OnSettingListener;
-import com.mengdd.weibo.sina.read.LoadStatusesActivity;
-import com.mengdd.weibo.sina.write.SendStatusActivity;
-import com.weibo.sina.android.api.AuthorizeSSOHelper;
-import com.weibo.sina.android.utils.AppConfig;
-import com.weibo.sina.android.utils.AppConstants;
-
+import android.app.Activity;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -16,13 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.app.Activity;
-import android.content.Intent;
-import android.content.res.Resources;
+
+import com.mengdd.hellosina.components.FrameHeaderViewModel;
+import com.mengdd.hellosina.components.FrameHeaderViewModel.OnSettingListener;
+import com.mengdd.weibo.sina.read.LoadStatusesActivity;
+import com.mengdd.weibo.sina.write.SendStatusActivity;
+import com.weibo.sina.android.utils.AppConfig;
+import com.weibo.sina.android.utils.AppConstants;
 
 public class MainActivity extends Activity {
 
@@ -85,6 +84,7 @@ public class MainActivity extends Activity {
 
                 new Sample(R.string.load, LoadStatusesActivity.class),
                 new Sample(R.string.write, SendStatusActivity.class),
+                new Sample(R.string.drawer, DrawerActivity.class),
 
         };
 
@@ -114,8 +114,8 @@ public class MainActivity extends Activity {
 
     // 私有类，List中的每一个例子
     private class Sample {
-        private CharSequence title;
-        private Class<? extends Activity> activityClass;
+        private final CharSequence title;
+        private final Class<? extends Activity> activityClass;
 
         public Sample(int titleResId, Class<? extends Activity> activityClass) {
             this.activityClass = activityClass;

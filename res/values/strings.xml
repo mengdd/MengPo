@@ -9,5 +9,6 @@
     <string name="user_login_sso">User Login SSO</string>
     <string name="load">Load</string>
     <string name="write">Write</string>
+    <string name="drawer">DrawerLayout</string>
 
 </resources>

@@ -35,6 +35,8 @@
         </activity>
         <activity android:name="com.mengdd.hellosina.SsoAuthorActivity" >
         </activity>
+        <activity android:name="com.mengdd.hellosina.DrawerActivity" >
+        </activity>
     </application>
 
 </manifest>
