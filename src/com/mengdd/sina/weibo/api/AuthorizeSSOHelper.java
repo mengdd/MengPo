@@ -1,4 +1,4 @@
-package com.weibo.sina.android.api;
+package com.mengdd.sina.weibo.api;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.mengdd.sina.weibo.data.AppConfig;
+import com.mengdd.sina.weibo.login.AccessTokenKeeper;
+import com.mengdd.sina.weibo.login.UserInfo;
 import com.mengdd.utils.LogUtils;
+import com.mengdd.utils.sina.weibo.AppConstants;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
-
 import com.sina.weibo.sdk.exception.WeiboException;
-import com.sina.weibo.sdk.utils.LogUtil;
-import com.weibo.sina.android.utils.AccessTokenKeeper;
-import com.weibo.sina.android.utils.AppConstants;
 
 public class AuthorizeSSOHelper {
 
     private Activity mActivity = null;
-    private WeiboAuth mWeiboAuth;
+    private final WeiboAuth mWeiboAuth;
 
     /** 注意：SsoHandler 仅当 SDK 支持 SSO 时有效 */
-    private SsoHandler mSsoHandler;
+    private final SsoHandler mSsoHandler;
 
     /** 封装了 "access_token"，"expires_in"，"refresh_token"，并提供了他们的管理功能 */
     private Oauth2AccessToken mAccessToken;
@@ -57,6 +57,7 @@ public class AuthorizeSSOHelper {
 
         @Override
         public void onComplete(Bundle values) {
+            LogUtils.i("" + values);
             // 从 Bundle 中解析 Token
             mAccessToken = Oauth2AccessToken.parseAccessToken(values);
             if (mAccessToken.isSessionValid()) {
@@ -64,13 +65,21 @@ public class AuthorizeSSOHelper {
                 // 保存 Token 到 SharedPreferences
                 AccessTokenKeeper.keepAccessToken(mActivity, mAccessToken);
 
-                Toast.makeText(mActivity, "success", Toast.LENGTH_SHORT).show();
+                // 保存Token 到本程序Config
+                AppConfig.accessToken = mAccessToken;
+
+                // 保存UserInfo
+
+                UserInfo.getUserInfo(mActivity, values);
+
+                Toast.makeText(mActivity, "login success", Toast.LENGTH_SHORT)
+                        .show();
                 LogUtils.i("success");
             }
             else {
                 // 当您注册的应用程序签名不正确时，就会收到 Code，请确保签名正确
                 String code = values.getString("code");
-                String message = "failed";
+                String message = "login failed! ";
                 if (!TextUtils.isEmpty(code)) {
                     message = message + "\nObtained the code: " + code;
                 }

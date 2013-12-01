@@ -1,4 +1,4 @@
-package com.weibo.sina.android.data;
+package com.mengdd.sina.weibo.data;
 
 import org.json.JSONObject;
 

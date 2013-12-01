@@ -1,10 +1,10 @@
-package com.mengdd.weibo.sina.write;
+package com.mengdd.sina.weibo.write;
 
 import com.mengdd.hellosina.R;
-import com.weibo.sina.android.api.RequestListenerAdapter;
-import com.weibo.sina.android.api.StatusesAPI;
-import com.weibo.sina.android.utils.AppConstants;
-import com.weibo.sina.android.utils.StringUtils;
+import com.mengdd.sina.weibo.api.RequestListenerAdapter;
+import com.mengdd.sina.weibo.api.StatusesAPI;
+import com.mengdd.utils.sina.weibo.AppConstants;
+import com.mengdd.utils.sina.weibo.StringUtils;
 
 import android.app.Activity;
 import android.content.Context;

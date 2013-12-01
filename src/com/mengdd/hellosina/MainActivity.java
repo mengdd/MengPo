@@ -18,10 +18,10 @@ import android.widget.TextView;
 
 import com.mengdd.hellosina.components.FrameHeaderViewModel;
 import com.mengdd.hellosina.components.FrameHeaderViewModel.OnSettingListener;
-import com.mengdd.weibo.sina.read.LoadStatusesActivity;
-import com.mengdd.weibo.sina.write.SendStatusActivity;
-import com.weibo.sina.android.utils.AppConfig;
-import com.weibo.sina.android.utils.AppConstants;
+import com.mengdd.sina.weibo.data.AppConfig;
+import com.mengdd.sina.weibo.read.LoadStatusesActivity;
+import com.mengdd.sina.weibo.write.SendStatusActivity;
+import com.mengdd.utils.sina.weibo.AppConstants;
 
 public class MainActivity extends Activity {
 

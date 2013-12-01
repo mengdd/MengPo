@@ -1,4 +1,4 @@
-package com.weibo.sina.android.utils;
+package com.mengdd.utils.sina.weibo;
 
 import android.content.Context;
 import android.content.SharedPreferences;

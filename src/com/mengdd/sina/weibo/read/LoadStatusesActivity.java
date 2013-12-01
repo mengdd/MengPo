@@ -1,4 +1,4 @@
-package com.mengdd.weibo.sina.read;
+package com.mengdd.sina.weibo.read;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,29 +7,27 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mengdd.hellosina.R;
-import com.mengdd.hellosina.R.id;
-import com.mengdd.hellosina.R.layout;
-import com.weibo.sina.android.api.RequestListenerAdapter;
-import com.weibo.sina.android.api.SinaWeiboAPI.FEATURE;
-import com.weibo.sina.android.api.StatusesAPI;
-import com.weibo.sina.android.data.StatusItem;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.mengdd.hellosina.R;
+import com.mengdd.sina.weibo.api.RequestListenerAdapter;
+import com.mengdd.sina.weibo.api.SinaWeiboAPI.FEATURE;
+import com.mengdd.sina.weibo.api.StatusesAPI;
+import com.mengdd.sina.weibo.data.StatusItem;
 
 public class LoadStatusesActivity extends Activity {
     private static final String TAG = "Load";
     private Button mRefreshBtn = null;
     private ListView mListView = null;
     private HomeStatusAdapter mAdapter = null;
-    private List<StatusItem> mStatusItems = new ArrayList<StatusItem>();
+    private final List<StatusItem> mStatusItems = new ArrayList<StatusItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +48,8 @@ public class LoadStatusesActivity extends Activity {
                 refreshStatuses();
             }
         });
+
+        refreshStatuses();
     }
 
     private void refreshStatuses() {
@@ -58,8 +58,9 @@ public class LoadStatusesActivity extends Activity {
                 .friendsTimeline(30, 1, false, FEATURE.ALL, mRefreshListener);
     }
 
-    private RequestListenerAdapter mRefreshListener = new RequestListenerAdapter() {
+    private final RequestListenerAdapter mRefreshListener = new RequestListenerAdapter() {
 
+        @Override
         public void onComplete(String result) {
             Log.i(TAG, "onComplete: " + result);
 

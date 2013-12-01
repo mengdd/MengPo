@@ -1,6 +1,8 @@
-package com.weibo.sina.android.data;
+package com.mengdd.sina.weibo.data;
 
 import org.json.JSONObject;
+
+import com.mengdd.sina.weibo.login.UserInfo;
 
 import android.util.Log;
 

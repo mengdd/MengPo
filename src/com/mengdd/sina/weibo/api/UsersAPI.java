@@ -1,4 +1,4 @@
-package com.weibo.sina.android.api;
+package com.mengdd.sina.weibo.api;
 
 import com.sina.weibo.sdk.auth.WeiboParameters;
 import com.sina.weibo.sdk.net.RequestListener;

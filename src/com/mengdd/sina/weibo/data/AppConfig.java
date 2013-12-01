@@ -1,10 +1,12 @@
-package com.weibo.sina.android.utils;
+package com.mengdd.sina.weibo.data;
 
 import android.content.Context;
 
+import com.mengdd.sina.weibo.api.SinaWeiboAPI;
+import com.mengdd.sina.weibo.login.AccessTokenKeeper;
+import com.mengdd.sina.weibo.login.UserInfo;
+import com.mengdd.utils.sina.weibo.SharedPrefUtil;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
-import com.weibo.sina.android.api.SinaWeiboAPI;
-import com.weibo.sina.android.data.UserInfo;
 
 public class AppConfig {
 

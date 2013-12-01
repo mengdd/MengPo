@@ -1,12 +1,17 @@
-package com.weibo.sina.android.data;
+package com.mengdd.sina.weibo.login;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 
-import com.weibo.sina.android.utils.SharedPrefUtil;
+import com.mengdd.sina.weibo.api.RequestListenerAdapter;
+import com.mengdd.sina.weibo.api.UsersAPI;
+import com.mengdd.sina.weibo.data.AppConfig;
+import com.mengdd.utils.LogUtils;
+import com.mengdd.utils.sina.weibo.SharedPrefUtil;
 
 public class UserInfo {
 
@@ -21,6 +26,8 @@ public class UserInfo {
     private int followersCount = 0;
     private int friendsCount = 0;
 
+    private static UserInfo mInstance = null;
+
     public UserInfo(Context context) {
 
         loadFromPref(context);
@@ -28,6 +35,7 @@ public class UserInfo {
 
     public UserInfo(String json) {
 
+        LogUtils.i(json);
         try {
             JSONObject object = new JSONObject(json);
             initFromJSONObject(object);
@@ -63,6 +71,8 @@ public class UserInfo {
     }
 
     public void saveToPref(Context context) {
+
+        LogUtils.i(this.toString());
         SharedPrefUtil.saveLong(context, "id", id);
         SharedPrefUtil.saveString(context, "name", name);
         SharedPrefUtil.saveString(context, "location", location);
@@ -90,6 +100,38 @@ public class UserInfo {
         friendsCount = SharedPrefUtil.getInt(context, "friends_count",
                 friendsCount);
 
+    }
+
+    public interface OnGetUserInforListener {
+        public void onGetUserInfo(UserInfo userInfo);
+    }
+
+    private static OnGetUserInforListener mOnGetUserInforListener = null;
+
+    public static void setOnGetUserInforListener(OnGetUserInforListener listener) {
+        mOnGetUserInforListener = listener;
+    }
+
+    public static void getUserInfo(final Context context, final Bundle values) {
+        String uidString = values.getString("uid");
+        Long uid = Long.parseLong(uidString);
+        UsersAPI.show(uid, new RequestListenerAdapter() {
+            @Override
+            public void onComplete(String json) {
+                super.onComplete(json);
+
+                UserInfo userInfo = new UserInfo(json);
+
+                mInstance = userInfo;
+
+                AppConfig.saveUserInfo(context, userInfo);
+
+                if (null != mOnGetUserInforListener) {
+                    mOnGetUserInforListener.onGetUserInfo(userInfo);
+                }
+
+            }
+        });
     }
 
     @Override

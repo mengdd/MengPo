@@ -29,9 +29,9 @@
         </activity>
         <activity android:name="com.mengdd.hellosina.UserAuthorizeActivity" >
         </activity>
-        <activity android:name="com.mengdd.weibo.sina.read.LoadStatusesActivity" >
+        <activity android:name="com.mengdd.sina.weibo.read.LoadStatusesActivity" >
         </activity>
-        <activity android:name="com.mengdd.weibo.sina.write.SendStatusActivity" >
+        <activity android:name="com.mengdd.sina.weibo.write.SendStatusActivity" >
         </activity>
         <activity android:name="com.mengdd.hellosina.SsoAuthorActivity" >
         </activity>

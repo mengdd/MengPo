@@ -1,9 +1,9 @@
-package com.mengdd.weibo.sina.read;
+package com.mengdd.sina.weibo.read;
 
 import java.util.List;
 
 import com.mengdd.hellosina.R;
-import com.weibo.sina.android.data.StatusItem;
+import com.mengdd.sina.weibo.data.StatusItem;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,8 +1,8 @@
-package com.weibo.sina.android.api;
+package com.mengdd.sina.weibo.api;
 
+import com.mengdd.utils.sina.weibo.AppConstants;
 import com.sina.weibo.sdk.auth.WeiboParameters;
 import com.sina.weibo.sdk.net.RequestListener;
-import com.weibo.sina.android.utils.AppConstants;
 
 public class AuthorizeAPI extends SinaWeiboAPI {
 

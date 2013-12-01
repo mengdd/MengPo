@@ -13,19 +13,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mengdd.sina.weibo.api.RequestListenerAdapter;
+import com.mengdd.sina.weibo.api.SinaWeiboAPI;
+import com.mengdd.sina.weibo.api.UsersAPI;
+import com.mengdd.sina.weibo.data.AppConfig;
+import com.mengdd.sina.weibo.login.AccessTokenKeeper;
+import com.mengdd.sina.weibo.login.UserInfo;
 import com.mengdd.utils.LogUtils;
+import com.mengdd.utils.sina.weibo.AppConstants;
+import com.mengdd.utils.sina.weibo.BitmapUtils;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuth;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.exception.WeiboException;
-import com.weibo.sina.android.api.RequestListenerAdapter;
-import com.weibo.sina.android.api.SinaWeiboAPI;
-import com.weibo.sina.android.api.UsersAPI;
-import com.weibo.sina.android.data.UserInfo;
-import com.weibo.sina.android.utils.AccessTokenKeeper;
-import com.weibo.sina.android.utils.AppConfig;
-import com.weibo.sina.android.utils.AppConstants;
-import com.weibo.sina.android.utils.BitmapUtils;
 
 public class UserAuthorizeActivity extends Activity {
 
